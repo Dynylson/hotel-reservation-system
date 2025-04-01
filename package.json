@@ -10,10 +10,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "fastify": "^5.2.2"
+    "dotenv": "^16.4.7",
+    "drizzle-orm": "^0.41.0",
+    "fastify": "^5.2.2",
+    "pg": "^8.14.1"
   },
   "devDependencies": {
     "@types/node": "^22.13.14",
+    "@types/pg": "^8.11.11",
+    "drizzle-kit": "^0.30.6",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.31.0",
     "ts-node": "^10.9.2",
