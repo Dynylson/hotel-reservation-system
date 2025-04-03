@@ -32,3 +32,16 @@ export const photos = pgTable('photos', {
   url: text().notNull(),
   created_at: timestamp().default(sql`now()`).notNull(),
 });
+
+export const reserveStatus = pgEnum('status', ['confirmed', 'pending', 'cancelled']);
+
+export const reserves = pgTable('reserves', {
+  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  user_id: uuid('user_id').notNull().references(() => users.id),
+  room_id: uuid('room_id').notNull().references(() => rooms.id),
+  check_in: timestamp(),
+  check_out: timestamp(),
+  status: reserveStatus().default('pending'),
+  created_at: timestamp().default(sql`now()`).notNull(),
+  updated_at: timestamp().default(sql`now()`).notNull(),
+});
