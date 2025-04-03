@@ -1,6 +1,6 @@
 import { sql } from 'drizzle-orm';
 import {
-  integer, jsonb, pgEnum, pgTable, timestamp, uuid,
+  integer, jsonb, pgEnum, pgTable, text, timestamp, uuid,
   varchar,
 } from 'drizzle-orm/pg-core';
 
@@ -25,4 +25,10 @@ export const users = pgTable('users', {
   role: userRole().default('member'),
   created_at: timestamp().default(sql`now()`).notNull(),
   updated_at: timestamp().default(sql`now()`).notNull(),
+});
+
+export const photos = pgTable('photos', {
+  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  url: text().notNull(),
+  created_at: timestamp().default(sql`now()`).notNull(),
 });
