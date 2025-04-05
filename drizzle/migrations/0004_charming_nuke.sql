@@ -1,0 +1,1 @@
+ALTER TABLE "rooms" ALTER COLUMN "number" SET DATA TYPE varchar(10);
