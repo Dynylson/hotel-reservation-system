@@ -2,7 +2,7 @@ type RoomType = 'single' | 'double' | 'suite' | null; // TODO: set room_type col
 
 export type RegisterRequest = {
     number: string;
-    roomType: RoomType;
+    room_type: RoomType;
     features: any | null; // TODO: add type
 }
 

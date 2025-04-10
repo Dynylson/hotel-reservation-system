@@ -1,4 +1,5 @@
 import { RoomRepository } from '../repositories/room-repository';
+import { RoomMapper } from './mappers/room-mapper';
 
 interface RegisterRoomUseCaseRequest {
   number: string;
@@ -9,11 +10,15 @@ interface RegisterRoomUseCaseRequest {
 export class RegisterRoomUseCase {
   constructor(private roomRepository: RoomRepository) {}
 
-  execute({ number, roomType, features }: RegisterRoomUseCaseRequest) {
-    return this.roomRepository.register({
+  async execute({ number, roomType, features }: RegisterRoomUseCaseRequest) {
+    const roomToPersistence = RoomMapper.toPersistence({
       number,
       roomType,
       features,
     });
+
+    const roomFromDatabase = await this.roomRepository.register(roomToPersistence);
+
+    return RoomMapper.toDomain(roomFromDatabase);
   }
 }
