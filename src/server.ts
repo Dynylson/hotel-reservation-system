@@ -1,8 +1,9 @@
 import Fastify from 'fastify';
+import { roomsRoutes } from './http/controllers/room/routes';
 
 const app = Fastify();
 
-app.get('/', async () => ({ message: 'Hello, World!' }));
+app.register(roomsRoutes);
 
 app.listen({ port: 3333 }, () => {
   console.log('Server is running!');
